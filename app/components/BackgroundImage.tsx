@@ -1,18 +1,23 @@
 'use client';
 
-import { REMOVE_IMAGE_WHITESPACE } from '@/constants/image';
+import {
+    FADE_IN_TIME,
+    REMOVE_IMAGE_WHITESPACE,
+} from '@/constants/image.constants';
 import { Box, Fade } from '@mui/material';
-import image1 from '../../public/images/image1.jpg';
-import image2 from '../../public/images/image2.jpg';
-import image3 from '../../public/images/image3.jpg';
-import image4 from '../../public/images/image4.jpg';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { FILL } from '@/constants/styles.constants';
 
-const images = [image1, image2, image3, image4];
-const imagesLastIndex = images.length - 1;
+interface BackgroundImageProps {
+    imageFilePaths: string[];
+}
 
-export default function BackgroundImage() {
+export default function BackgroundImage({
+    imageFilePaths,
+}: BackgroundImageProps) {
+    const imagesLastIndex = imageFilePaths.length - 1;
+
     const [image, setImage] = useState({
         in: 0,
         out: imagesLastIndex,
@@ -29,29 +34,36 @@ export default function BackgroundImage() {
         }, 10000);
 
         return () => clearInterval(interval);
-    }, [setImage]);
+    }, [setImage, imagesLastIndex]);
 
     return (
-        <Box sx={{ ...REMOVE_IMAGE_WHITESPACE, position: 'relative' }}>
+        <Box sx={{ ...REMOVE_IMAGE_WHITESPACE, position: 'absolute', ...FILL }}>
             {[0, 1].map((toggle) => (
                 <Box
                     key={`image-${toggle}`}
-                    sx={{ position: 'absolute', opacity: '.6' }}
+                    sx={{
+                        position: 'absolute',
+                        opacity: '.5',
+                        ...FILL,
+                    }}
                 >
-                    <Fade timeout={3000} in={toggle === image.container}>
+                    <Fade
+                        timeout={FADE_IN_TIME}
+                        in={toggle === image.container}
+                    >
                         <Image
+                            fill
                             priority
                             style={{
-                                height: '100vh',
-                                width: '100vw',
                                 objectFit: 'cover',
                             }}
                             src={
                                 toggle === image.container
-                                    ? images[image.in]
-                                    : images[image.out]
+                                    ? imageFilePaths[image.in]
+                                    : imageFilePaths[image.out]
                             }
                             alt="home interior"
+                            sizes="100%"
                         />
                     </Fade>
                 </Box>

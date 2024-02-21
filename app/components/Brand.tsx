@@ -1,16 +1,17 @@
-import { Box, Typography } from '@mui/material';
+import { CENTER, FILL } from '@/constants/styles.constants';
+import { Box } from '@mui/material';
+import Image from 'next/image';
+import homeLogo from '@/public/images/Home Page Logo.png';
+import { RESPONSIVE_IMAGE } from '@/constants/image.constants';
 
 export default function Brand() {
     return (
-        <Box
-            sx={{
-                textAlign: 'center',
-                color: 'white',
-            }}
-        >
-            <Typography sx={{ fontSize: 200 }}>B</Typography>
-            <Typography variant="h1">B. PARKER</Typography>
-            <Typography variant="h2">INTERIORS</Typography>
+        <Box sx={{ ...FILL, ...CENTER, position: 'absolute', px: 4 }}>
+            <Image
+                alt="home logo"
+                src={homeLogo}
+                style={{ ...RESPONSIVE_IMAGE, maxWidth: 638 }}
+            />
         </Box>
     );
 }

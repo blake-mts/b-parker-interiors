@@ -1,7 +1,11 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
-import { CssBaseline } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
+import { Suspense } from 'react';
+import Loading from './loading';
+import Navigation from './components/Navigation';
+import { FILL } from '@/constants/styles.constants';
 ``;
 
 export default function RootLayout({
@@ -10,12 +14,23 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body>
+        <html style={FILL} lang="en">
+            <body style={FILL}>
                 <AppRouterCacheProvider>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
-                        {children}
+                        <Box
+                            sx={{
+                                ...FILL,
+                                display: 'flex',
+                                flexDirection: 'column',
+                            }}
+                        >
+                            <Navigation />
+                            <Suspense fallback={<Loading />}>
+                                <main style={{ flexGrow: 1 }}>{children}</main>
+                            </Suspense>
+                        </Box>
                     </ThemeProvider>
                 </AppRouterCacheProvider>
             </body>
