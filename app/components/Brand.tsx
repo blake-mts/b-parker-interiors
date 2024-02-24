@@ -8,6 +8,7 @@ export default function Brand() {
     return (
         <Box sx={{ ...FILL, ...CENTER, position: 'absolute', px: 4 }}>
             <Image
+                priority
                 alt="home logo"
                 src={homeLogo}
                 style={{ ...RESPONSIVE_IMAGE, maxWidth: 638 }}
