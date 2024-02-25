@@ -37,6 +37,7 @@ export default function SingleImage({
         >
             <Fade timeout={FADE_IN_TIME} in={fadeIn()}>
                 <Image
+                    quality={25}
                     onLoad={onLoad}
                     fill
                     priority

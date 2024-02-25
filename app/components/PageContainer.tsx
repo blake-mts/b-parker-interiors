@@ -6,7 +6,7 @@ export default function PageContainer({
     ...rest
 }: ContainerProps) {
     return (
-        <Container {...rest} sx={{ mt: 4, ...sx }}>
+        <Container {...rest} sx={{ mt: 4, minHeight: 0, ...sx }}>
             {children}
         </Container>
     );

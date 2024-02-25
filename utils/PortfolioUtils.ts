@@ -3,7 +3,7 @@ import { PublicUtils } from './PublicUtils';
 import { resolve, join } from 'path';
 import { GetPlaiceholderReturn, getPlaiceholder } from 'plaiceholder';
 
-export interface PortfoiloImageData {
+export interface PortfolioImageData {
     base64: string;
     width: number;
     height: number;
@@ -42,7 +42,7 @@ export class PortfolioUtils {
 
         const data = await Promise.all(
             files.map(async (file) => ({
-                plaiceholder: await getPlaiceholder(file.data),
+                plaiceholder: await getPlaiceholder(file.data, { size: 64 }),
                 path: file.path,
             }))
         );
@@ -56,7 +56,7 @@ export class PortfolioUtils {
 
     static formatData(
         data: { plaiceholder: GetPlaiceholderReturn; path: string }[]
-    ): PortfoiloImageData[] {
+    ): PortfolioImageData[] {
         return data.map((item) => ({
             base64: item.plaiceholder.base64,
             height: item.plaiceholder.metadata.height,

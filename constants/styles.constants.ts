@@ -5,3 +5,8 @@ export const CENTER = {
     alignItems: 'center',
     justifyContent: 'center',
 } as const;
+
+export const MIN_HEIGHT_100 = {
+    minHeight: '100%',
+    height: '1px',
+} as const;

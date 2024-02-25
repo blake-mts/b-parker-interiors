@@ -21,7 +21,7 @@ export default function RootLayout({
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                height: '100%',
+                                flexGrow: 1,
                             }}
                         >
                             <Navigation />
@@ -30,8 +30,8 @@ export default function RootLayout({
                                     flexGrow: 1,
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    height: '100%',
                                     position: 'relative',
+                                    minHeight: 0,
                                 }}
                             >
                                 {children}
