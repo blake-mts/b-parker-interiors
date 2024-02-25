@@ -1,13 +1,10 @@
 'use client';
 
-import {
-    FADE_IN_TIME,
-    REMOVE_IMAGE_WHITESPACE,
-} from '@/constants/image.constants';
-import { Box, Fade } from '@mui/material';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import Image from 'next/image';
+import { REMOVE_IMAGE_WHITESPACE } from '@/constants/image.constants';
 import { FILL } from '@/constants/styles.constants';
+import { Box } from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
+import theme from '../theme';
 import SingleImage from './SingleImage';
 
 interface BackgroundImageProps {
@@ -43,7 +40,14 @@ export default function BackgroundImage({
     };
 
     return (
-        <Box sx={{ ...REMOVE_IMAGE_WHITESPACE, position: 'absolute', ...FILL }}>
+        <Box
+            sx={{
+                ...REMOVE_IMAGE_WHITESPACE,
+                ...FILL,
+                position: 'absolute',
+                backgroundColor: theme.palette.common.black,
+            }}
+        >
             {imageFilePaths.map((filePath, index) => (
                 <SingleImage
                     key={filePath}

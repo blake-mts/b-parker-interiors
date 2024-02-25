@@ -6,7 +6,14 @@ import { RESPONSIVE_IMAGE } from '@/constants/image.constants';
 
 export default function Brand() {
     return (
-        <Box sx={{ ...FILL, ...CENTER, position: 'absolute', px: 4 }}>
+        <Box
+            sx={{
+                ...CENTER,
+                p: 4,
+                position: 'relative',
+                flexGrow: 1,
+            }}
+        >
             <Image
                 priority
                 alt="home logo"

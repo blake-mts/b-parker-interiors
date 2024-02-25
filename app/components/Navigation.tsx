@@ -1,15 +1,16 @@
 'use client';
 
-import { CENTER } from '@/constants/styles.constants';
+import { CENTER, FILL } from '@/constants/styles.constants';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
     AppBar,
     Box,
     Container,
-    Drawer,
     IconButton,
     List,
     ListItem,
+    ListItemButton,
+    SwipeableDrawer,
     Toolbar,
     useMediaQuery,
     useTheme,
@@ -18,6 +19,11 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import logo from '@/public/images/small-logo.png';
 import { useState } from 'react';
+import { COLORS } from '@/constants/colors.constants';
+import drawerLogo from '@/public/images/Navigation Logo.png';
+import { PAGES } from '@/constants/pages';
+import CloseIcon from '@mui/icons-material/Close';
+import { useSmallScreen } from '../hooks/useSmallScreen';
 
 const logoSize = 28;
 
@@ -27,12 +33,11 @@ export default function Navigation() {
     const closeDrawer = () => setDrawer(false);
     const openDrawer = () => setDrawer(true);
 
-    const theme = useTheme();
-    const smallScreenSize = useMediaQuery(theme.breakpoints.down('sm'));
+    const smallScreenSize = useSmallScreen();
 
     return (
         <>
-            <AppBar position="sticky">
+            <AppBar enableColorOnDark position="sticky">
                 <Container maxWidth="xl" disableGutters>
                     <Toolbar
                         sx={{ px: smallScreenSize ? 1 : 2 }}
@@ -74,11 +79,70 @@ export default function Navigation() {
                     </Toolbar>
                 </Container>
             </AppBar>
-            <Drawer anchor="right" open={drawer} onClose={closeDrawer}>
-                <List sx={{ minWidth: 300 }}>
-                    <ListItem>YO</ListItem>
-                </List>
-            </Drawer>
+            <SwipeableDrawer
+                anchor="right"
+                open={drawer}
+                onClose={closeDrawer}
+                onOpen={openDrawer}
+                PaperProps={{ sx: { backgroundColor: COLORS.smokeyGray } }}
+            >
+                <Box
+                    sx={{
+                        minWidth: 320,
+                        pb: 4,
+                    }}
+                >
+                    <IconButton
+                        size="large"
+                        onClick={closeDrawer}
+                        sx={{ m: 1 }}
+                    >
+                        <CloseIcon sx={{ color: COLORS.oatmeal }} />
+                    </IconButton>
+                    <Box sx={{ ...CENTER, px: 2, py: 4 }}>
+                        <Image
+                            style={{
+                                maxWidth: smallScreenSize ? 150 : 200,
+                                height: 'auto',
+                            }}
+                            src={drawerLogo}
+                            alt="logo"
+                        />
+                    </Box>
+                    <List
+                        sx={{
+                            width: '100%',
+                            px: 2,
+                        }}
+                    >
+                        {PAGES.map((page, index) => (
+                            <ListItem
+                                disablePadding
+                                divider
+                                key={page.title}
+                                sx={{
+                                    borderTop: index === 0 ? 1 : 0,
+                                    borderBottom: 1,
+                                    borderColor: COLORS.oatmeal,
+                                    color: COLORS.oatmeal,
+                                }}
+                            >
+                                <ListItemButton
+                                    onClick={closeDrawer}
+                                    component={NextLink}
+                                    href={page.route}
+                                    sx={{
+                                        display: 'flex',
+                                        justifyContent: 'flex-end',
+                                    }}
+                                >
+                                    {page.title}
+                                </ListItemButton>
+                            </ListItem>
+                        ))}
+                    </List>
+                </Box>
+            </SwipeableDrawer>
         </>
     );
 }

@@ -1,7 +1,7 @@
 import { FADE_IN_TIME } from '@/constants/image.constants';
+import { FILL } from '@/constants/styles.constants';
 import { Box, Fade } from '@mui/material';
 import Image from 'next/image';
-import { FILL } from '@/constants/styles.constants';
 
 interface SingleImageProps {
     filePath: string;
@@ -30,9 +30,9 @@ export default function SingleImage({
         <Box
             key={`image-${filePath}`}
             sx={{
+                ...FILL,
                 position: 'absolute',
                 opacity: '.5',
-                ...FILL,
             }}
         >
             <Fade timeout={FADE_IN_TIME} in={fadeIn()}>

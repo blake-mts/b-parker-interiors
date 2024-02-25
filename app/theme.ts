@@ -1,22 +1,33 @@
 'use client';
-import { Roboto } from 'next/font/google';
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-const roboto = Roboto({
-    weight: ['300', '400', '500', '700'],
-    subsets: ['latin'],
-    display: 'swap',
-});
+import { Cinzel_Decorative, Outfit } from 'next/font/google';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { COLORS } from '@/constants/colors.constants';
+
+const outfit = Outfit({ subsets: ['latin'] });
+
+const cinzel = Cinzel_Decorative({ weight: ['400'], subsets: ['latin'] });
 
 let theme = createTheme({
     typography: {
-        fontFamily: roboto.style.fontFamily,
+        fontFamily: outfit.style.fontFamily,
     },
     palette: {
-        mode: 'dark',
+        background: { default: COLORS.granularLimestone },
+        primary: { main: COLORS.smokeyGray },
+        secondary: { main: COLORS.antiqueBrown },
+        text: { primary: COLORS.smokeyGray },
     },
 });
 
 theme = responsiveFontSizes(theme);
+
+theme.typography.h1 = {
+    fontSize: '2rem',
+    fontFamily: cinzel.style.fontFamily,
+    [theme.breakpoints.down('md')]: {
+        fontSize: '1.5rem',
+    },
+};
 
 export default theme;
