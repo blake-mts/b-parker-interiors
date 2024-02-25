@@ -7,8 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "build:portfolio": "tsx scripts/buildPortfolioData",
-        "postinstall": "cd scripts && npm install"
+        "build:portfolio": "tsx scripts/buildPortfolioData"
     },
     "dependencies": {
         "@emotion/cache": "^11.11.0",
