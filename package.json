@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "build:portfolio": "tsx scripts/buildPortfolioData"
+        "build:imageData": "tsx scripts/buildImageData"
     },
     "dependencies": {
         "@emotion/cache": "^11.11.0",

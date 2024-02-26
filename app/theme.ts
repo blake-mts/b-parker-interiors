@@ -1,12 +1,12 @@
 'use client';
 
-import { Cinzel_Decorative, Outfit } from 'next/font/google';
+import { Cinzel, Outfit } from 'next/font/google';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { COLORS } from '@/constants/colors.constants';
 
 const outfit = Outfit({ subsets: ['latin'] });
 
-const cinzel = Cinzel_Decorative({ weight: ['400'], subsets: ['latin'] });
+const cinzel = Cinzel({ weight: ['400'], subsets: ['latin'] });
 
 let theme = createTheme({
     typography: {

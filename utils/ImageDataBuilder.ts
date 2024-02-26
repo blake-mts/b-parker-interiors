@@ -1,22 +1,36 @@
-import { readFile, writeFile } from 'fs/promises';
-import { PublicUtils } from './PublicUtils';
-import { resolve, join } from 'path';
+import { PAGE } from '@/constants/pages.constants';
+import { readFile, readdir, writeFile } from 'fs/promises';
+import { resolve } from 'path';
 import { GetPlaiceholderReturn, getPlaiceholder } from 'plaiceholder';
 
-export interface PortfolioImageData {
+export interface ImageData {
     base64: string;
     width: number;
     height: number;
     path: string;
 }
 
-export class PortfolioUtils {
-    private constructor() {}
+export class ImageDataBuilder {
+    path: string;
+    dataFilePath: string;
 
-    static folder = 'portfolio';
-    static dataFilePath = resolve(join(PublicUtils.folder, 'portfolio.json'));
+    static pages = [PAGE.home, PAGE.portfolio] as const;
 
-    static async getData() {
+    static async buildAllData() {
+        await Promise.all(
+            this.pages.map(async (page) => {
+                const builder = new ImageDataBuilder(page);
+                await builder.buildData();
+            })
+        );
+    }
+
+    constructor(public folder: (typeof ImageDataBuilder.pages)[number]) {
+        this.path = resolve(`public/images/${this.folder}`);
+        this.dataFilePath = resolve(`public/data/${this.folder}.json`);
+    }
+
+    async getData() {
         try {
             const file = await readFile(this.dataFilePath, 'utf8');
             return JSON.parse(file);
@@ -30,14 +44,20 @@ export class PortfolioUtils {
         }
     }
 
-    static async buildData() {
-        const filePaths = await PublicUtils.getImagePaths(this.folder);
+    async buildData() {
+        const fileNames = await readdir(this.path);
 
         const files = await Promise.all(
-            filePaths.map(async (path) => ({
-                data: await readFile(join(PublicUtils.folder, path)),
-                path,
-            }))
+            fileNames.map(async (name) => {
+                const path = resolve(this.path, name);
+                const data = await readFile(path);
+                const nextPath = `/images/${this.folder}/${name}`;
+
+                return {
+                    data,
+                    path: nextPath,
+                };
+            })
         );
 
         const data = await Promise.all(
@@ -54,9 +74,9 @@ export class PortfolioUtils {
         return imageData;
     }
 
-    static formatData(
+    formatData(
         data: { plaiceholder: GetPlaiceholderReturn; path: string }[]
-    ): PortfolioImageData[] {
+    ): ImageData[] {
         return data.map((item) => ({
             base64: item.plaiceholder.base64,
             height: item.plaiceholder.metadata.height,

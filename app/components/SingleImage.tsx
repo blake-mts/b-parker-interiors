@@ -1,10 +1,11 @@
 import { FADE_IN_TIME } from '@/constants/image.constants';
 import { FILL } from '@/constants/styles.constants';
+import { ImageData } from '@/utils/ImageDataBuilder';
 import { Box, Fade } from '@mui/material';
 import Image from 'next/image';
 
 interface SingleImageProps {
-    filePath: string;
+    image: ImageData;
     index: number;
     onLoad: () => void;
     loaded: boolean;
@@ -12,7 +13,7 @@ interface SingleImageProps {
 }
 
 export default function SingleImage({
-    filePath,
+    image,
     index,
     loaded,
     currentImageIndex,
@@ -28,7 +29,6 @@ export default function SingleImage({
 
     return (
         <Box
-            key={`image-${filePath}`}
             sx={{
                 ...FILL,
                 position: 'absolute',
@@ -37,17 +37,18 @@ export default function SingleImage({
         >
             <Fade timeout={FADE_IN_TIME} in={fadeIn()}>
                 <Image
-                    quality={25}
                     onLoad={onLoad}
-                    fill
                     priority
                     style={{
+                        width: '100%',
                         objectFit: 'cover',
                         position: 'absolute',
+                        height: '100%',
                     }}
-                    src={filePath}
+                    src={image.path}
                     alt="home interior"
-                    sizes="100%"
+                    width={1000}
+                    height={1000}
                 />
             </Fade>
         </Box>

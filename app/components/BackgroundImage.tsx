@@ -6,19 +6,18 @@ import { Box } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import theme from '../theme';
 import SingleImage from './SingleImage';
+import { ImageData } from '@/utils/ImageDataBuilder';
 
 interface BackgroundImageProps {
-    imageFilePaths: string[];
+    images: ImageData[];
 }
 
-export default function BackgroundImage({
-    imageFilePaths,
-}: BackgroundImageProps) {
+export default function BackgroundImage({ images }: BackgroundImageProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [loaded, setLoaded] = useState(false);
     const loadCounter = useRef(0);
 
-    const lastIndex = imageFilePaths.length - 1;
+    const lastIndex = images.length - 1;
 
     useEffect(() => {
         if (loaded) {
@@ -48,10 +47,10 @@ export default function BackgroundImage({
                 backgroundColor: theme.palette.common.black,
             }}
         >
-            {imageFilePaths.map((filePath, index) => (
+            {images.map((image, index) => (
                 <SingleImage
-                    key={filePath}
-                    filePath={filePath}
+                    key={image.path}
+                    image={image}
                     index={index}
                     onLoad={onLoad}
                     loaded={loaded}

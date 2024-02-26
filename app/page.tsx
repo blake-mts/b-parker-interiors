@@ -1,10 +1,13 @@
 import { Box } from '@mui/material';
 import BackgroundImage from './components/BackgroundImage';
 import Brand from './components/Brand';
-import { PublicUtils } from '@/utils/PublicUtils';
+import { ImageDataBuilder } from '@/utils/ImageDataBuilder';
+import { PAGE } from '@/constants/pages.constants';
+
+const homeImageDataBuilder = new ImageDataBuilder(PAGE.home);
 
 export default async function Home() {
-    const data = await PublicUtils.getImagePaths('slideshow');
+    const data = await homeImageDataBuilder.getData();
 
     return (
         <Box
@@ -15,7 +18,7 @@ export default async function Home() {
                 flexDirection: 'column',
             }}
         >
-            <BackgroundImage imageFilePaths={data} />
+            <BackgroundImage images={data} />
             <Brand />
         </Box>
     );

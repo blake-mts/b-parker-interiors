@@ -21,7 +21,7 @@ import logo from '@/public/images/small-logo.png';
 import { useState } from 'react';
 import { COLORS } from '@/constants/colors.constants';
 import drawerLogo from '@/public/images/Navigation Logo.png';
-import { PAGES } from '@/constants/pages';
+import { PAGES_ORDERED } from '@/constants/pages.constants';
 import CloseIcon from '@mui/icons-material/Close';
 import { useSmallScreen } from '../hooks/useSmallScreen';
 
@@ -115,7 +115,7 @@ export default function Navigation() {
                             px: 2,
                         }}
                     >
-                        {PAGES.map((page, index) => (
+                        {PAGES_ORDERED.map((page, index) => (
                             <ListItem
                                 disablePadding
                                 divider
