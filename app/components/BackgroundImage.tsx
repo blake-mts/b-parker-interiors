@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import SingleImage from './SingleImage';
 import { ImageData } from '@/utils/ImageDataBuilder';
-import { theme } from '@/theme/ThemeUtils';
+import { theme } from '@/theme/theme';
 
 interface BackgroundImageProps {
     images: ImageData[];
@@ -25,7 +25,7 @@ export default function BackgroundImage({ images }: BackgroundImageProps) {
                 setCurrentImageIndex((state) =>
                     state === lastIndex ? 0 : state + 1
                 );
-            }, 10000);
+            }, 5000);
 
             return () => clearInterval(interval);
         }

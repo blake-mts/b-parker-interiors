@@ -31,6 +31,7 @@ export default function About() {
             </Typography>
             <ImageContainer>
                 <Image
+                    placeholder="blur"
                     width={1080}
                     style={{
                         width: '100%',
@@ -97,6 +98,7 @@ export default function About() {
             />
             <ImageContainer>
                 <Image
+                    placeholder="blur"
                     src={image2}
                     width={1080}
                     alt="team photo"

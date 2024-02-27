@@ -89,6 +89,7 @@ class ThemeUtils {
     static createTheme() {
         this.setupTheme();
         this.createFonts();
+
         return this.theme;
     }
 }
