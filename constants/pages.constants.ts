@@ -15,7 +15,7 @@ export const PAGES: {
 } = {
     [PAGE.home]: { route: '/', title: 'HOME' },
     [PAGE.portfolio]: { route: '/portfolio', title: 'PORTFOLIO' },
-    [PAGE.about]: { route: '/about', title: 'ABOUT' },
+    [PAGE.about]: { route: '/about', title: 'ABOUT US' },
     [PAGE.contact]: { route: '/contact', title: 'CONTACT' },
 } as const;
 

@@ -4,9 +4,9 @@ import { REMOVE_IMAGE_WHITESPACE } from '@/constants/image.constants';
 import { FILL } from '@/constants/styles.constants';
 import { Box } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
-import theme from '../theme';
 import SingleImage from './SingleImage';
 import { ImageData } from '@/utils/ImageDataBuilder';
+import { theme } from '@/theme/ThemeUtils';
 
 interface BackgroundImageProps {
     images: ImageData[];
