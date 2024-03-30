@@ -5,9 +5,9 @@ import { Theme, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { COLORS } from '@/constants/colors.constants';
 import { CSSProperties } from '@mui/material/styles/createMixins';
 
-const outfit = Outfit({ subsets: ['latin'] });
+export const outfit = Outfit({ subsets: ['latin'] });
 
-const cinzel = Cinzel({ weight: ['400'], subsets: ['latin'] });
+export const cinzel = Cinzel({ weight: ['400'], subsets: ['latin'] });
 
 enum Tag {
     h1 = 'h1',
@@ -64,10 +64,10 @@ class ThemeUtils {
                 },
             },
             palette: {
+                mode: 'dark',
                 background: { default: COLORS.granularLimestone },
                 primary: { main: COLORS.smokeyGray },
-                secondary: { main: COLORS.antiqueBrown },
-                text: { primary: COLORS.smokeyGray },
+                secondary: { main: COLORS.granularLimestone },
             },
         });
 

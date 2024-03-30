@@ -1,6 +1,6 @@
 import { ImageDataBuilder } from '@/utils/ImageDataBuilder';
-import Heading from '../components/Heading';
-import PageContainer from '../components/PageContainer';
+import Heading from '../../components/Heading';
+import PageContainer from '../../components/PageContainer';
 import ImageGallery from './ImageGallery';
 import { PAGE, PAGES } from '@/constants/pages.constants';
 

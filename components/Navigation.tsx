@@ -1,6 +1,6 @@
 'use client';
 
-import { CENTER, FILL } from '@/constants/styles.constants';
+import { CENTER } from '@/constants/styles.constants';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
     AppBar,
@@ -12,8 +12,6 @@ import {
     ListItemButton,
     SwipeableDrawer,
     Toolbar,
-    useMediaQuery,
-    useTheme,
 } from '@mui/material';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -24,6 +22,7 @@ import drawerLogo from '@/public/images/Navigation Logo.png';
 import { PAGES_ORDERED } from '@/constants/pages.constants';
 import CloseIcon from '@mui/icons-material/Close';
 import { useSmallScreen } from '../hooks/useSmallScreen';
+import { theme } from '@/theme/theme';
 
 const logoSize = 28;
 
@@ -37,7 +36,11 @@ export default function Navigation() {
 
     return (
         <>
-            <AppBar enableColorOnDark position="sticky">
+            <AppBar
+                enableColorOnDark
+                position="sticky"
+                sx={{ backgroundColor: theme.palette.primary.dark }}
+            >
                 <Container maxWidth="xl" disableGutters>
                     <Toolbar
                         sx={{ px: smallScreenSize ? 1 : 2 }}
@@ -84,25 +87,26 @@ export default function Navigation() {
                 open={drawer}
                 onClose={closeDrawer}
                 onOpen={openDrawer}
-                PaperProps={{ sx: { backgroundColor: COLORS.smokeyGray } }}
             >
                 <Box
                     sx={{
                         minWidth: 320,
                         pb: 4,
+                        backgroundColor: COLORS.smokeyGray,
+                        flexGrow: 1,
                     }}
                 >
                     <IconButton
                         size="large"
                         onClick={closeDrawer}
-                        sx={{ m: 1 }}
+                        sx={{ mt: 1, ml: 1 }}
                     >
                         <CloseIcon sx={{ color: COLORS.oatmeal }} />
                     </IconButton>
                     <Box sx={{ ...CENTER, px: 2, py: 4 }}>
                         <Image
                             style={{
-                                maxWidth: smallScreenSize ? 150 : 200,
+                                maxWidth: smallScreenSize ? 140 : 200,
                                 height: 'auto',
                             }}
                             src={drawerLogo}

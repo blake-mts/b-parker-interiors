@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import BackgroundImage from './components/BackgroundImage';
-import Brand from './components/Brand';
+import BackgroundImage from './BackgroundImage';
+import Brand from './Brand';
 import { ImageDataBuilder } from '@/utils/ImageDataBuilder';
 import { PAGE } from '@/constants/pages.constants';
 

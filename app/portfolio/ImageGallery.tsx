@@ -2,7 +2,7 @@
 
 import { ImageList, ImageListItem } from '@mui/material';
 import Image from 'next/image';
-import { useSmallScreen } from '../hooks/useSmallScreen';
+import { useSmallScreen } from '../../hooks/useSmallScreen';
 import { ImageData } from '@/utils/ImageDataBuilder';
 
 interface ImageGalleryProps {

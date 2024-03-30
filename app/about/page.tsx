@@ -4,10 +4,10 @@ import image2 from '@/public/images/TeamPhoto.jpg';
 import { Link, Typography } from '@mui/material';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import Heading from '../components/Heading';
-import PageContainer from '../components/PageContainer';
+import Heading from '../../components/Heading';
+import PageContainer from '../../components/PageContainer';
 import ImageContainer from './ImageContainer';
-import Sections from '../components/Sections';
+import Sections from '../../components/Sections';
 
 export default function About() {
     return (
@@ -32,7 +32,7 @@ export default function About() {
             <ImageContainer>
                 <Image
                     placeholder="blur"
-                    width={1080}
+                    sizes="50vw, 100vw"
                     style={{
                         width: '100%',
                         height: 'auto',
