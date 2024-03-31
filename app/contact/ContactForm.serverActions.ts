@@ -11,13 +11,7 @@ const url = `https://api.mailgun.net/v3/${domain}/messages`;
 
 export async function submitContactForm(fields: Fields) {
     try {
-        const validation = Fields.safeParse(fields);
-
-        if (!validation.success) {
-            console.log(fields);
-            console.log('fields validation failure\n\n', validation.error);
-            return errorResponse;
-        }
+        Fields.parse(fields);
 
         const form = new FormData();
 
@@ -54,13 +48,16 @@ export async function submitContactForm(fields: Fields) {
         const json = await mailgunResponse.json();
 
         if (mailgunResponse.status !== 200) {
-            console.log(json);
-            return errorResponse;
+            throw Error(json);
         }
+
+        throw Error('test error');
 
         return successResponse;
     } catch (error) {
         console.log(error);
+        throw error;
+    } finally {
         return errorResponse;
     }
 }
