@@ -45,19 +45,14 @@ export async function submitContactForm(fields: Fields) {
             },
         });
 
-        console.log(mailgunResponse);
-
-        const json = await mailgunResponse.json();
-
         if (mailgunResponse.status !== 200) {
-            throw Error(json);
+            const errorMessage = await mailgunResponse.text();
+            throw Error(`Mailgun error: ${errorMessage}`);
         }
-
-        throw Error('test error');
 
         return successResponse;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         throw error;
     } finally {
         return errorResponse;
