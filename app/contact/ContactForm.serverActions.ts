@@ -10,7 +10,7 @@ export async function submitContactForm(fields: Fields) {
     return await Sentry.withServerActionInstrumentation(
         'submitContactForm',
         async () => {
-            throw Error('ERRRORORRORO');
+            throw new Error('ERRRORORRORO');
             Fields.parse(fields);
 
             const form = new FormData();
