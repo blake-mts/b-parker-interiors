@@ -52,6 +52,6 @@ export async function submitContactForm(fields: Fields) {
         return;
     } catch (error) {
         captureException(error);
-        throw Error('Failed to submit contact information.');
+        throw error;
     }
 }
