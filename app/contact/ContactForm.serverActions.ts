@@ -11,6 +11,7 @@ export async function submitContactForm(fields: Fields) {
     return await withServerActionInstrumentation(
         'submitContactForm',
         async () => {
+            throw Error('THIS IS AN EROR');
             Fields.parse(fields);
 
             const form = new FormData();
@@ -51,7 +52,7 @@ export async function submitContactForm(fields: Fields) {
                 throw Error(`Mailgun error: ${errorMessage}`);
             }
 
-            return;
+            return { success: true };
         }
     );
 }
