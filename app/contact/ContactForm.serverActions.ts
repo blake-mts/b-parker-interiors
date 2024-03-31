@@ -51,7 +51,9 @@ export async function submitContactForm(fields: Fields) {
 
         return;
     } catch (error) {
-        captureException(error);
+        console.log(captureException);
+        const testMe = captureException(error);
+        console.log(testMe);
         throw error;
     }
 }
