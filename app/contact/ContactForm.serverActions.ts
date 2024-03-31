@@ -10,6 +10,7 @@ const url = `https://api.mailgun.net/v3/${domain}/messages`;
 export async function submitContactForm(fields: Fields) {
     return await withServerActionInstrumentation(
         'submitContactForm',
+        { recordResponse: true },
         async () => {
             throw Error('THIS IS AN EROR');
             Fields.parse(fields);
