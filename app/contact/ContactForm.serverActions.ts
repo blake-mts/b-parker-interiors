@@ -51,10 +51,14 @@ export async function submitContactForm(fields: Fields) {
 
         return;
     } catch (error) {
-        console.log(captureException);
-        console.log(JSON.stringify(error), 'logalog1');
-        const testMe = captureException(error);
-        console.log(testMe, 'logalog');
+        try {
+            console.log(captureException);
+            console.log(JSON.stringify(error), 'logalog1');
+            const testMe = captureException(error);
+            console.log(testMe, 'logalog');
+        } catch (error) {
+            console.log(error);
+        }
         throw error;
     }
 }
