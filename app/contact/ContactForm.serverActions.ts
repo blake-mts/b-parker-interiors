@@ -45,6 +45,8 @@ export async function submitContactForm(fields: Fields) {
             },
         });
 
+        console.log(mailgunResponse);
+
         const json = await mailgunResponse.json();
 
         if (mailgunResponse.status !== 200) {
