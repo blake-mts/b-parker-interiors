@@ -52,9 +52,9 @@ export async function submitContactForm(fields: Fields) {
         return;
     } catch (error) {
         console.log(captureException);
-        console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error), 'logalog1');
         const testMe = captureException(error);
-        console.log(testMe);
+        console.log(testMe, 'logalog');
         throw error;
     }
 }
