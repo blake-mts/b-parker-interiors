@@ -1,6 +1,6 @@
 'use server';
 
-import { withServerActionInstrumentation } from '@sentry/nextjs';
+import { captureException } from '@sentry/nextjs';
 import { Fields } from './ContactForm.validations';
 
 const apiKey = process.env.MAILGUN_API_KEY;
@@ -8,52 +8,50 @@ const domain = process.env.MAILGUN_DOMAIN;
 const url = `https://api.mailgun.net/v3/${domain}/messages`;
 
 export async function submitContactForm(fields: Fields) {
-    return await withServerActionInstrumentation(
-        'submitContactForm',
-        { recordResponse: true },
-        async () => {
-            throw Error('THIS IS AN EROR');
-            Fields.parse(fields);
+    try {
+        throw Error('ERRRORORRORO');
+        Fields.parse(fields);
 
-            const form = new FormData();
+        const form = new FormData();
 
-            const formValues = {
-                from: `Website Contact Form <mailgun@${domain}>`,
-                to: 'blake@masonts.com',
-                subject: 'Contact Form Submission',
-                html: `
-                    Name: ${fields.NAME}
-                    <br/>
-                    Email: ${fields.EMAIL}
-                    <br/>
-                    Phone: ${fields.PHONE}
-                    <br/>
-                    Location: ${fields.LOCATION}
-                    <br/>
-                    More: ${fields.MORE}
-                `,
-            };
+        const formValues = {
+            from: `Website Contact Form <mailgun@${domain}>`,
+            to: 'blake@masonts.com',
+            subject: 'Contact Form Submission',
+            html: `
+                Name: ${fields.NAME}
+                <br/>
+                Email: ${fields.EMAIL}
+                <br/>
+                Phone: ${fields.PHONE}
+                <br/>
+                Location: ${fields.LOCATION}
+                <br/>
+                More: ${fields.MORE}
+            `,
+        };
 
-            for (const entry of Object.entries(formValues)) {
-                form.append(...entry);
-            }
-
-            const mailgunResponse = await fetch(url, {
-                method: 'POST',
-                body: form,
-                headers: {
-                    Authorization:
-                        'Basic ' +
-                        Buffer.from('api:' + apiKey).toString('base64'),
-                },
-            });
-
-            if (mailgunResponse.status !== 200) {
-                const errorMessage = await mailgunResponse.text();
-                throw Error(`Mailgun error: ${errorMessage}`);
-            }
-
-            return { success: true };
+        for (const entry of Object.entries(formValues)) {
+            form.append(...entry);
         }
-    );
+
+        const mailgunResponse = await fetch(url, {
+            method: 'POST',
+            body: form,
+            headers: {
+                Authorization:
+                    'Basic ' + Buffer.from('api:' + apiKey).toString('base64'),
+            },
+        });
+
+        if (mailgunResponse.status !== 200) {
+            const errorMessage = await mailgunResponse.text();
+            throw Error(`Mailgun error: ${errorMessage}`);
+        }
+
+        return;
+    } catch (error) {
+        captureException(error);
+        throw Error('Failed to submit contact information.');
+    }
 }

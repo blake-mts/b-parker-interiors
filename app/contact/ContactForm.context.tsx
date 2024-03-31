@@ -76,7 +76,7 @@ const ContactFormContext = createContext<ContactFormContext | undefined>(
 
 const defaultState = {
     fields: ContactForm.defaultValues,
-    valid: false,
+    valid: true,
     submitting: false,
 };
 
