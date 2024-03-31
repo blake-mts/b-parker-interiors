@@ -1,7 +1,7 @@
 import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
-import { useField } from './FormContext';
+import { useField } from '../ContactForm.context';
 import { CheckCircle, Error } from '@mui/icons-material';
-import { Field } from './ContactForm.constants';
+import { Field } from '../ContactForm.constants';
 
 export interface FormFieldProps extends Omit<TextFieldProps, 'id'> {
     id: Field;

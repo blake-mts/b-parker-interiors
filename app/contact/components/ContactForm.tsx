@@ -5,14 +5,14 @@ import { useSmallScreen } from '@/hooks/useSmallScreen';
 import { outfit } from '@/theme/theme';
 import { Box, Button, Card, Typography } from '@mui/material';
 import { FormEventHandler, useState } from 'react';
-import { ContactForm } from './ContactForm';
-import { Field } from './ContactForm.constants';
-import { submitContactForm } from './ContactForm.serverActions';
-import ErrorDialog from './ErrorDialog';
-import { useContactForm } from './FormContext';
-import FormField from './FormField';
-import HelpText from './HelpText';
-import SuccessDialog from './SuccessDialog';
+import { ContactForm } from '../ContactForm.class';
+import { Field } from '../ContactForm.constants';
+import { submitContactForm } from '../ContactForm.serverActions';
+import ErrorDialog from './ContactFormErrorDialog';
+import { useContactForm } from '../ContactForm.context';
+import FormField from './ContactFormField';
+import HelpText from './ContactFormHelpText';
+import SuccessDialog from './ContactFormSuccessDialog';
 
 export default function EmailForm() {
     const errorDialog = useState(false);

@@ -10,7 +10,7 @@ import {
     useContext,
     useReducer,
 } from 'react';
-import { ContactForm } from './ContactForm';
+import { ContactForm } from './ContactForm.class';
 import { Field } from './ContactForm.constants';
 
 export enum ContactFormActionType {

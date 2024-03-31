@@ -4,7 +4,7 @@ import {
     ContactFormField,
     ContactFormFields,
     ContactFormState,
-} from './FormContext';
+} from './ContactForm.context';
 import { Field } from './ContactForm.constants';
 
 export class ContactForm {
@@ -82,18 +82,12 @@ export class ContactForm {
     }
 
     static buildFields(state: ContactFormState) {
-        const entries = Object.entries(state.fields) as [
-            Field,
-            ContactFormField
-        ][];
-
-        return entries.map(([field, { value }]) => ({
-            field,
-            value:
-                field === Field.PHONE
-                    ? this.removeNonDigitCharacters(value)
-                    : value,
-        }));
+        return Object.fromEntries(
+            Object.entries(state.fields).map(([field, properties]) => [
+                field,
+                properties.value,
+            ])
+        ) as { [key in Field]: string };
     }
 
     private trimValue() {

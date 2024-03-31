@@ -1,6 +1,6 @@
 import { CheckCircle, Error } from '@mui/icons-material';
 import { Box, CircularProgress, Typography } from '@mui/material';
-import { useContactForm } from './FormContext';
+import { useContactForm } from '../ContactForm.context';
 
 export default function HelpText() {
     const { state } = useContactForm();
