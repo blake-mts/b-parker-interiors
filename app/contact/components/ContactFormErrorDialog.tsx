@@ -11,12 +11,11 @@ import {
 import { Dispatch, SetStateAction } from 'react';
 
 interface ErrorDialogProps {
-    state: [boolean, Dispatch<SetStateAction<boolean>>];
+    state: boolean;
+    setState: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function ErrorDialog({
-    state: [state, setState],
-}: ErrorDialogProps) {
+export default function ErrorDialog({ state, setState }: ErrorDialogProps) {
     const close = () => {
         setState(false);
     };

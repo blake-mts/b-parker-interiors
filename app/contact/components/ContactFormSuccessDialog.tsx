@@ -11,12 +11,11 @@ import {
 import { Dispatch, SetStateAction } from 'react';
 
 interface SuccessDialogProps {
-    state: [boolean, Dispatch<SetStateAction<boolean>>];
+    state: boolean;
+    setState: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function SuccessDialog({
-    state: [state, setState],
-}: SuccessDialogProps) {
+export default function SuccessDialog({ state, setState }: SuccessDialogProps) {
     const close = () => {
         setState(false);
     };

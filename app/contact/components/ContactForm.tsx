@@ -15,24 +15,24 @@ import HelpText from './ContactFormHelpText';
 import SuccessDialog from './ContactFormSuccessDialog';
 
 export default function EmailForm() {
-    const errorDialog = useState(false);
-    const successDialog = useState(false);
+    const [errorDialog, setErrorDialog] = useState(false);
+    const [successDialog, setSuccessDialog] = useState(false);
 
     const small = useSmallScreen();
     const { state, setSubmitting, resetForm } = useContactForm();
 
     const onSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
-        event.preventDefault();
-        setSubmitting(true);
+        try {
+            event.preventDefault();
+            setSubmitting(true);
 
-        const data = await submitContactForm(ContactForm.buildFields(state));
+            await submitContactForm(ContactForm.buildFields(state));
 
-        if (data.error) {
-            errorDialog[1](true);
-            setSubmitting(false);
-        } else {
-            successDialog[1](true);
+            setSuccessDialog(true);
             resetForm();
+        } catch (error) {
+            setErrorDialog(true);
+            setSubmitting(false);
         }
     };
 
@@ -86,8 +86,8 @@ export default function EmailForm() {
                     </Box>
                 </form>
             </Card>
-            <ErrorDialog state={errorDialog} />
-            <SuccessDialog state={successDialog} />
+            <ErrorDialog state={errorDialog} setState={setErrorDialog} />
+            <SuccessDialog state={successDialog} setState={setSuccessDialog} />
         </>
     );
 }
