@@ -52,6 +52,7 @@ export async function submitContactForm(fields: Fields) {
         return;
     } catch (error) {
         console.log(captureException);
+        console.log(JSON.stringify(error));
         const testMe = captureException(error);
         console.log(testMe);
         throw error;
