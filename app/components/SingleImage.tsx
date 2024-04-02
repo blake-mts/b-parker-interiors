@@ -1,11 +1,10 @@
 import { FADE_IN_TIME } from '@/constants/image.constants';
 import { FILL } from '@/constants/styles.constants';
-import { ImageData } from '@/utils/ImageDataBuilder';
 import { Box, Fade } from '@mui/material';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 interface SingleImageProps {
-    image: ImageData;
+    image: StaticImageData;
     index: number;
     onLoad: () => void;
     loaded: boolean;
@@ -45,10 +44,9 @@ export default function SingleImage({
                         position: 'absolute',
                         height: '100%',
                     }}
-                    src={image.path}
+                    src={image}
                     alt="home interior"
-                    width={1000}
-                    height={1000}
+                    sizes="100vw"
                 />
             </Fade>
         </Box>

@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, ContainerProps } from '@mui/material';
-import { useSmallScreen } from '../hooks/useSmallScreen';
+import { useSmallScreen } from '../../hooks/useSmallScreen';
 
 export default function PageContainer({
     children,

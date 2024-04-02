@@ -5,14 +5,16 @@ import { FILL } from '@/constants/styles.constants';
 import { Box } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import SingleImage from './SingleImage';
-import { ImageData } from '@/utils/ImageDataBuilder';
 import { theme } from '@/theme/theme';
 
-interface BackgroundImageProps {
-    images: ImageData[];
-}
+import image1 from '@/public/images/home/Home Page 1.jpg';
+import image2 from '@/public/images/home/Home Page 2.jpg';
+import image3 from '@/public/images/home/Home Page 3.jpg';
+import image4 from '@/public/images/home/Home Page 4.jpg';
 
-export default function BackgroundImage({ images }: BackgroundImageProps) {
+const images = [image1, image2, image3, image4];
+
+export default function BackgroundImage() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [loaded, setLoaded] = useState(false);
     const loadCounter = useRef(0);
@@ -49,7 +51,7 @@ export default function BackgroundImage({ images }: BackgroundImageProps) {
         >
             {images.map((image, index) => (
                 <SingleImage
-                    key={image.path}
+                    key={`single-image-${index}`}
                     image={image}
                     index={index}
                     onLoad={onLoad}

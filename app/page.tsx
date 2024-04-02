@@ -1,14 +1,8 @@
 import { Box } from '@mui/material';
-import BackgroundImage from './BackgroundImage';
+import BackgroundImage from './components/BackgroundImage';
 import Brand from './Brand';
-import { ImageDataBuilder } from '@/utils/ImageDataBuilder';
-import { PAGE } from '@/constants/pages.constants';
 
-const homeImageDataBuilder = new ImageDataBuilder(PAGE.home);
-
-export default async function Home() {
-    const data = await homeImageDataBuilder.getData();
-
+export default function Home() {
     return (
         <Box
             style={{
@@ -18,7 +12,7 @@ export default async function Home() {
                 flexDirection: 'column',
             }}
         >
-            <BackgroundImage images={data} />
+            <BackgroundImage />
             <Brand />
         </Box>
     );

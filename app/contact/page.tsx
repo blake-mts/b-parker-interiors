@@ -1,7 +1,7 @@
 import contactImage from '@/public/images/Contact Us Image.jpg';
 import { Box } from '@mui/material';
 import Image from 'next/image';
-import PageContainer from '../../components/PageContainer';
+import PageContainer from '../components/PageContainer';
 import { ContactFormProvider } from './ContactForm.context';
 import EmailForm from './components/ContactForm';
 

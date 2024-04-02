@@ -21,7 +21,7 @@ import { COLORS } from '@/constants/colors.constants';
 import drawerLogo from '@/public/images/Navigation Logo.png';
 import { PAGES_ORDERED } from '@/constants/pages.constants';
 import CloseIcon from '@mui/icons-material/Close';
-import { useSmallScreen } from '../hooks/useSmallScreen';
+import { useSmallScreen } from '../../hooks/useSmallScreen';
 import { theme } from '@/theme/theme';
 
 const logoSize = 28;
