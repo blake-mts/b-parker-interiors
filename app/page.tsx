@@ -27,4 +27,5 @@ export const metadata: Metadata = {
         description: 'Interiors',
         url: 'https://b-parker-interiors-green.vercel.app/',
     },
+    metadataBase: new URL('https://b-parker-interiors-green.vercel.app/'),
 };
