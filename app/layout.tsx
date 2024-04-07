@@ -1,12 +1,11 @@
+import { COLORS } from '@/constants/colors.constants';
+import { theme } from '@/theme/theme';
 import { Box, CssBaseline } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
-import Navigation from './components/Navigation';
-import { theme } from '@/theme/theme';
-import './globals.css';
-import { COLORS } from '@/constants/colors.constants';
 import { Metadata } from 'next';
-import Script from 'next/script';
+import Navigation from './components/Navigation';
+import './globals.css';
 
 export default function RootLayout({
     children,
@@ -16,7 +15,6 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <Script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`} />
                 <AppRouterCacheProvider>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
