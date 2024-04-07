@@ -3,16 +3,17 @@
 import { COLORS } from '@/constants/colors.constants';
 import { useSmallScreen } from '@/hooks/useSmallScreen';
 import { outfit } from '@/theme/theme';
-import { Box, Button, Card, Link, Typography, darken } from '@mui/material';
+import { Box, Button, Card, Typography, darken } from '@mui/material';
 import { FormEventHandler, useState } from 'react';
 import { ContactForm } from '../ContactForm.class';
-import ErrorDialog from './ContactFormErrorDialog';
 import { useContactForm } from '../ContactForm.context';
+import { submitContactForm } from '../ContactForm.serverActions';
+import { ErrorResponseType, Field } from '../ContactForm.types';
+import ErrorDialog from './ContactFormErrorDialog';
 import FormField from './ContactFormField';
 import HelpText from './ContactFormHelpText';
 import SuccessDialog from './ContactFormSuccessDialog';
-import { submitContactForm } from '../ContactForm.serverActions';
-import { ErrorResponseType, Field } from '../ContactForm.types';
+import ReCAPTCHALink from './ReCAPTCHALink';
 
 export default function EmailForm() {
     const [errorDialog, setErrorDialog] = useState(false);
@@ -92,25 +93,9 @@ export default function EmailForm() {
                         <Box>
                             <Typography variant="subtitle2" color={darken(COLORS.granularLimestone, 0.3)}>
                                 This site is protected by reCAPTCHA and the Google&nbsp;
-                                <Link
-                                    color={darken(COLORS.granularLimestone, 0.1)}
-                                    sx={{ mx: '.1rem' }}
-                                    target="_blank"
-                                    href="https://policies.google.com/privacy"
-                                >
-                                    Privacy Policy
-                                </Link>
+                                <ReCAPTCHALink href="https://policies.google.com/privacy">Privacy Policy</ReCAPTCHALink>
                                 &nbsp;and&nbsp;
-                                <Link
-                                    color={darken(COLORS.granularLimestone, 0.1)}
-                                    sx={{
-                                        mx: '.1rem',
-                                    }}
-                                    target="_blank"
-                                    href="https://policies.google.com/terms"
-                                >
-                                    Terms of Service
-                                </Link>
+                                <ReCAPTCHALink href="https://policies.google.com/terms">Terms of Service</ReCAPTCHALink>
                                 &nbsp;apply.
                             </Typography>
                         </Box>
