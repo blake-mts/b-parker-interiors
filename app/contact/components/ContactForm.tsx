@@ -6,13 +6,13 @@ import { outfit } from '@/theme/theme';
 import { Box, Button, Card, Typography } from '@mui/material';
 import { FormEventHandler, useState } from 'react';
 import { ContactForm } from '../ContactForm.class';
-import { Field } from '../ContactForm.constants';
-import { submitContactForm } from '../ContactForm.serverActions';
 import ErrorDialog from './ContactFormErrorDialog';
 import { useContactForm } from '../ContactForm.context';
 import FormField from './ContactFormField';
 import HelpText from './ContactFormHelpText';
 import SuccessDialog from './ContactFormSuccessDialog';
+import { submitContactForm } from '../ContactForm.serverActions';
+import { ErrorResponseType, Field } from '../ContactForm.types';
 
 export default function EmailForm() {
     const [errorDialog, setErrorDialog] = useState(false);
@@ -24,13 +24,26 @@ export default function EmailForm() {
     const onSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
         try {
             event.preventDefault();
+            await new Promise<void>((resolve) => {
+                window.grecaptcha.ready(() => {
+                    resolve();
+                });
+            });
+
+            const token = await grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit' });
+
             setSubmitting(true);
 
-            await submitContactForm(ContactForm.buildFields(state));
+            const sumbissionResponse = await submitContactForm(ContactForm.buildFields(state, token));
+
+            if (sumbissionResponse.responseType === ErrorResponseType.INVALID_RECAPTCHA_TOKEN) {
+                throw Error(ErrorResponseType.INVALID_RECAPTCHA_TOKEN);
+            }
 
             setSuccessDialog(true);
             resetForm();
         } catch (error) {
+            console.log(error);
             setErrorDialog(true);
             setSubmitting(false);
         }
@@ -61,15 +74,8 @@ export default function EmailForm() {
                         <FormField label="Name *" id={Field.NAME} />
                         <FormField label="Email *" id={Field.EMAIL} />
                         <FormField label="Phone *" id={Field.PHONE} />
-                        <FormField
-                            label="Where is your project located?"
-                            id={Field.LOCATION}
-                        />
-                        <FormField
-                            label="Tell us about your project!"
-                            id={Field.MORE}
-                            rows={4}
-                        />
+                        <FormField label="Where is your project located?" id={Field.LOCATION} />
+                        <FormField label="Tell us about your project!" id={Field.MORE} rows={4} />
                         <Box>
                             <Button
                                 size="large"

@@ -1,11 +1,7 @@
 import { AsYouType } from 'libphonenumber-js';
 import { z } from 'zod';
-import {
-    ContactFormField,
-    ContactFormFields,
-    ContactFormState,
-} from './ContactForm.context';
-import { Field } from './ContactForm.constants';
+import { ContactFormFields, ContactFormState } from './ContactForm.context';
+import { ContactFormSubmission, Field } from './ContactForm.types';
 
 export class ContactForm {
     static shortMaxLength = 100;
@@ -72,22 +68,18 @@ export class ContactForm {
         this.validateForm();
     }
 
-    static getUpdatedFormState(
-        field: Field,
-        state: ContactFormState,
-        value: string
-    ) {
+    static getUpdatedFormState(field: Field, state: ContactFormState, value: string) {
         const contactForm = new ContactForm(field, state, value);
         return contactForm.state;
     }
 
-    static buildFields(state: ContactFormState) {
-        return Object.fromEntries(
-            Object.entries(state.fields).map(([field, properties]) => [
-                field,
-                properties.value,
-            ])
-        ) as { [key in Field]: string };
+    static buildFields(state: ContactFormState, token: string): ContactFormSubmission {
+        return {
+            fields: Object.fromEntries(
+                Object.entries(state.fields).map(([field, properties]) => [field, properties.value])
+            ) as { [key in Field]: string },
+            token,
+        };
     }
 
     private trimValue() {

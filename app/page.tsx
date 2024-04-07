@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import BackgroundImage from './components/BackgroundImage';
 import Brand from './Brand';
-import { Metadata } from 'next';
 
 export default function Home() {
     return (
@@ -18,14 +17,3 @@ export default function Home() {
         </Box>
     );
 }
-
-export const metadata: Metadata = {
-    title: 'B. Parker Interiors',
-    description: 'Interiors',
-    openGraph: {
-        title: 'B. Parker Interiors',
-        description: 'Interiors',
-        url: 'https://b-parker-interiors-green.vercel.app/',
-    },
-    metadataBase: new URL('https://b-parker-interiors-green.vercel.app/'),
-};

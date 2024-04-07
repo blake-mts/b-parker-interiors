@@ -1,12 +1,39 @@
 'use server';
 
+import { ContactFormSubmission, ErrorResponseType, SUCCESS_RESPONSE_TYPE } from './ContactForm.types';
+import { ResponseType } from './ContactForm.types';
 import { Fields } from './ContactForm.validations';
 
 const apiKey = process.env.MAILGUN_API_KEY;
 const domain = process.env.MAILGUN_DOMAIN;
 const url = `https://api.mailgun.net/v3/${domain}/messages`;
 
-export async function submitContactForm(fields: Fields) {
+export async function submitContactForm(formSubmission: ContactFormSubmission): Promise<{
+    responseType: ResponseType;
+}> {
+    const { fields, token } = formSubmission;
+
+    const recaptchaFormData = new URLSearchParams();
+    recaptchaFormData.append('response', token);
+    recaptchaFormData.append('secret', process.env.RECAPTCHA_SECRET_KEY);
+
+    const verifyTokenResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        body: recaptchaFormData,
+    });
+
+    const verifyTokenResponseJSON: { success: boolean } = await verifyTokenResponse.json();
+
+    if (!verifyTokenResponseJSON.success) {
+        console.log({
+            response: verifyTokenResponseJSON,
+            responseType: ErrorResponseType.INVALID_RECAPTCHA_TOKEN,
+        });
+        return {
+            responseType: ErrorResponseType.INVALID_RECAPTCHA_TOKEN,
+        };
+    }
+
     Fields.parse(fields);
 
     const form = new FormData();
@@ -36,8 +63,7 @@ export async function submitContactForm(fields: Fields) {
         method: 'POST',
         body: form,
         headers: {
-            Authorization:
-                'Basic ' + Buffer.from('api:' + apiKey).toString('base64'),
+            Authorization: 'Basic ' + Buffer.from('api:' + apiKey).toString('base64'),
         },
     });
 
@@ -46,5 +72,7 @@ export async function submitContactForm(fields: Fields) {
         throw Error(`Mailgun error: ${errorMessage}`);
     }
 
-    return;
+    return {
+        responseType: SUCCESS_RESPONSE_TYPE,
+    };
 }

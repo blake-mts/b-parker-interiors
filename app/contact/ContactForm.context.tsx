@@ -1,17 +1,9 @@
 'use client';
 
 import { AsYouType } from 'libphonenumber-js';
-import {
-    ChangeEvent,
-    Dispatch,
-    PropsWithChildren,
-    Reducer,
-    createContext,
-    useContext,
-    useReducer,
-} from 'react';
+import { ChangeEvent, Dispatch, PropsWithChildren, Reducer, createContext, useContext, useReducer } from 'react';
 import { ContactForm } from './ContactForm.class';
-import { Field } from './ContactForm.constants';
+import { Field } from './ContactForm.types';
 
 export enum ContactFormActionType {
     UPDATE_FIELD = 'UPDATE_FIELD',
@@ -51,15 +43,9 @@ type UpdateField = ContactFormActionGeneric<
     ContactFormActionType.UPDATE_FIELD
 >;
 
-type SetSubmitting = ContactFormActionGeneric<
-    boolean,
-    ContactFormActionType.SET_SUBMITTING
->;
+type SetSubmitting = ContactFormActionGeneric<boolean, ContactFormActionType.SET_SUBMITTING>;
 
-type ResetForm = ContactFormActionGeneric<
-    undefined,
-    ContactFormActionType.RESET
->;
+type ResetForm = ContactFormActionGeneric<undefined, ContactFormActionType.RESET>;
 
 type ContactFormAction = UpdateField | SetSubmitting | ResetForm;
 
@@ -70,9 +56,7 @@ interface ContactFormContext {
 
 type FormFieldEvent = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
-const ContactFormContext = createContext<ContactFormContext | undefined>(
-    undefined
-);
+const ContactFormContext = createContext<ContactFormContext | undefined>(undefined);
 
 const defaultState = {
     fields: ContactForm.defaultValues,
@@ -80,10 +64,7 @@ const defaultState = {
     submitting: false,
 };
 
-function contactFormReducer(
-    state: ContactFormState,
-    { payload, type }: ContactFormAction
-) {
+function contactFormReducer(state: ContactFormState, { payload, type }: ContactFormAction) {
     switch (type) {
         case ContactFormActionType.UPDATE_FIELD:
             const { field, value } = payload;
@@ -101,17 +82,11 @@ function contactFormReducer(
 }
 
 export function ContactFormProvider({ children }: PropsWithChildren) {
-    const [state, dispatch] = useReducer<
-        Reducer<ContactFormState, ContactFormAction>
-    >(contactFormReducer, defaultState);
+    const [state, dispatch] = useReducer<Reducer<ContactFormState, ContactFormAction>>(contactFormReducer, defaultState);
 
     const value = { state, dispatch };
 
-    return (
-        <ContactFormContext.Provider value={value}>
-            {children}
-        </ContactFormContext.Provider>
-    );
+    return <ContactFormContext.Provider value={value}>{children}</ContactFormContext.Provider>;
 }
 
 function useContactFormContext() {

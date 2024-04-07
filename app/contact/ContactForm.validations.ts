@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Field } from './ContactForm.constants';
+import { Field } from './ContactForm.types';
 import { ContactForm } from './ContactForm.class';
 
 export const Fields = z.object({
@@ -9,5 +9,3 @@ export const Fields = z.object({
     [Field.LOCATION]: z.string().max(ContactForm.shortMaxLength),
     [Field.MORE]: z.string().max(ContactForm.longMaxLength),
 });
-
-export type Fields = z.infer<typeof Fields>;
