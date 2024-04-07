@@ -14,17 +14,11 @@ export default function About() {
         <PageContainer>
             <Heading>{PAGES.about.title}</Heading>
             <Typography sx={{ mb: 2 }}>
-                B. Parker Interiors is a full-service residential build and
-                design firm that assists clients in custom home building,
-                remodels, and decorating a functional beautiful space with
-                furniture, fabrics, and accessories.
+                B. Parker Interiors is a full-service residential build and design firm that assists clients in custom home
+                building, remodels, and decorating a functional beautiful space with furniture, fabrics, and accessories.
             </Typography>
             <Typography>
-                <Link
-                    href={PAGES.contact.route}
-                    component={NextLink}
-                    sx={{ fontWeight: 500 }}
-                >
+                <Link href={PAGES.contact.route} component={NextLink} sx={{ fontWeight: 500 }}>
                     Contact Us
                 </Link>
                 &nbsp;to request a consultation!
@@ -48,13 +42,10 @@ export default function About() {
                 Services
             </Typography>
             <Typography sx={{ mb: 4 }}>
-                At B. Parker Interiors we believe in meeting our clients
-                wherever they might be in the creative process. The benefits of
-                being a build and design team are unlimted, but the real benefit
-                comes from being able to provide our clients with the service
-                they need. Whether you need a builder, a designer, and/or a
-                facilitator, we are committed to finding what works best for you
-                and your budget.
+                At B. Parker Interiors we believe in meeting our clients wherever they might be in the creative process. The
+                benefits of being a build and design team are unlimted, but the real benefit comes from being able to provide
+                our clients with the service they need. Whether you need a builder, a designer, and/or a facilitator, we are
+                committed to finding what works best for you and your budget.
             </Typography>
             <Sections
                 data={[
@@ -62,10 +53,8 @@ export default function About() {
                         title: <>NEW CONSTRUCTION</>,
                         body: (
                             <>
-                                Starting from the ground up, we will assist you
-                                every step of the way. Full collaboration and
-                                effective communication between the architect,
-                                designer, and builder ensures an enjoyable
+                                Starting from the ground up, we will assist you every step of the way. Full collaboration and
+                                effective communication between the architect, designer, and builder ensures an enjoyable
                                 experience for the duration of the build.
                             </>
                         ),
@@ -74,11 +63,9 @@ export default function About() {
                         title: <>REMODELS</>,
                         body: (
                             <>
-                                We are flexible when it comes to your remodel,
-                                and we want you to save money where we can. Our
-                                service for remodel depends on where you might
-                                be in the process, what you are hoping to
-                                create, and the provided budget.
+                                We are flexible when it comes to your remodel, and we want you to save money where we can. Our
+                                service for remodel depends on where you might be in the process, what you are hoping to create,
+                                and the provided budget.
                             </>
                         ),
                     },
@@ -86,10 +73,8 @@ export default function About() {
                         title: <>FURNITURE AND ACCESSORIES</>,
                         body: (
                             <>
-                                Completely custom-designed furniture to meet the
-                                needs of your family and compliment your
-                                beautiful home.Our exclusive designer lines
-                                allow us to curate a one-of-a-kind look at a
+                                Completely custom-designed furniture to meet the needs of your family and compliment your
+                                beautiful home.Our exclusive designer lines allow us to curate a one-of-a-kind look at a
                                 designer discount rate.
                             </>
                         ),
@@ -117,10 +102,8 @@ export default function About() {
                         title: <>HOW IT STARTED</>,
                         body: (
                             <>
-                                We both found ourselves in completely different
-                                careers when we decided to be honest with each
-                                other about our passion for bringing homes to
-                                life!
+                                We both found ourselves in completely different careers when we decided to be honest with each
+                                other about our passion for bringing homes to life!
                             </>
                         ),
                     },
@@ -128,8 +111,7 @@ export default function About() {
                         title: <>HOW IT&apos;S GOING</>,
                         body: (
                             <>
-                                We feel so lucky to be doing what we love! With
-                                each project we embrace the challenge every home
+                                We feel so lucky to be doing what we love! With each project we embrace the challenge every home
                                 brings with creativity and experience
                             </>
                         ),

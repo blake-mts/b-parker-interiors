@@ -3,7 +3,7 @@
 import { COLORS } from '@/constants/colors.constants';
 import { useSmallScreen } from '@/hooks/useSmallScreen';
 import { outfit } from '@/theme/theme';
-import { Box, Button, Card, Typography } from '@mui/material';
+import { Box, Button, Card, Link, Typography, darken } from '@mui/material';
 import { FormEventHandler, useState } from 'react';
 import { ContactForm } from '../ContactForm.class';
 import ErrorDialog from './ContactFormErrorDialog';
@@ -88,6 +88,31 @@ export default function EmailForm() {
                                 Submit
                             </Button>
                             <HelpText />
+                        </Box>
+                        <Box>
+                            <Typography variant="subtitle2" color={darken(COLORS.granularLimestone, 0.3)}>
+                                This site is protected by reCAPTCHA and the Google&nbsp;
+                                <Link
+                                    color={darken(COLORS.granularLimestone, 0.1)}
+                                    sx={{ mx: '.1rem' }}
+                                    target="_blank"
+                                    href="https://policies.google.com/privacy"
+                                >
+                                    Privacy Policy
+                                </Link>
+                                &nbsp;and&nbsp;
+                                <Link
+                                    color={darken(COLORS.granularLimestone, 0.1)}
+                                    sx={{
+                                        mx: '.1rem',
+                                    }}
+                                    target="_blank"
+                                    href="https://policies.google.com/terms"
+                                >
+                                    Terms of Service
+                                </Link>
+                                &nbsp;apply.
+                            </Typography>
                         </Box>
                     </Box>
                 </form>
