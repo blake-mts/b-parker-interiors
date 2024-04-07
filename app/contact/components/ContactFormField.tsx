@@ -1,7 +1,7 @@
 import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import { useField } from '../ContactForm.context';
 import { CheckCircle, Error } from '@mui/icons-material';
-import { Field } from '../ContactForm.constants';
+import { Field } from '../ContactForm.types';
 
 export interface FormFieldProps extends Omit<TextFieldProps, 'id'> {
     id: Field;
@@ -24,11 +24,7 @@ export default function FormField({ id, ...rest }: FormFieldProps) {
                 InputProps: {
                     endAdornment: (
                         <InputAdornment position="end">
-                            {field.error ? (
-                                <Error color="warning" />
-                            ) : (
-                                <CheckCircle color="success" />
-                            )}
+                            {field.error ? <Error color="warning" /> : <CheckCircle color="success" />}
                         </InputAdornment>
                     ),
                 },
