@@ -2,17 +2,7 @@
 
 import { CENTER } from '@/constants/styles.constants';
 import MenuIcon from '@mui/icons-material/Menu';
-import {
-    AppBar,
-    Box,
-    Container,
-    IconButton,
-    List,
-    ListItem,
-    ListItemButton,
-    SwipeableDrawer,
-    Toolbar,
-} from '@mui/material';
+import { AppBar, Box, Container, IconButton, List, ListItem, ListItemButton, SwipeableDrawer, Toolbar } from '@mui/material';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import logo from '@/public/images/small-logo.png';
@@ -36,58 +26,16 @@ export default function Navigation() {
 
     return (
         <>
-            <AppBar
-                enableColorOnDark
-                position="sticky"
-                sx={{ backgroundColor: theme.palette.primary.dark }}
-            >
+            <AppBar enableColorOnDark position="sticky" sx={{ backgroundColor: theme.palette.primary.dark }}>
                 <Container maxWidth="xl" disableGutters>
-                    <Toolbar
-                        sx={{ px: smallScreenSize ? 1 : 2 }}
-                        disableGutters
-                        variant="dense"
-                    >
-                        <IconButton
-                            href="/"
-                            component={NextLink}
-                            color="inherit"
-                        >
-                            <Box
-                                sx={{
-                                    height: logoSize,
-                                    width: logoSize,
-                                    ...CENTER,
-                                }}
-                            >
-                                <Image
-                                    priority
-                                    alt="logo"
-                                    src={logo}
-                                    style={{
-                                        width: 'auto',
-                                        height: '100%',
-                                    }}
-                                />
-                            </Box>
-                        </IconButton>
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ ml: 'auto' }}
-                            onClick={openDrawer}
-                        >
+                    <Toolbar sx={{ px: smallScreenSize ? 1 : 2 }} disableGutters variant="dense">
+                        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ ml: 'auto' }} onClick={openDrawer}>
                             <MenuIcon />
                         </IconButton>
                     </Toolbar>
                 </Container>
             </AppBar>
-            <SwipeableDrawer
-                anchor="right"
-                open={drawer}
-                onClose={closeDrawer}
-                onOpen={openDrawer}
-            >
+            <SwipeableDrawer anchor="right" open={drawer} onClose={closeDrawer} onOpen={openDrawer}>
                 <Box
                     sx={{
                         minWidth: 320,
@@ -96,11 +44,7 @@ export default function Navigation() {
                         flexGrow: 1,
                     }}
                 >
-                    <IconButton
-                        size="large"
-                        onClick={closeDrawer}
-                        sx={{ mt: 1, ml: 1 }}
-                    >
+                    <IconButton size="large" onClick={closeDrawer} sx={{ mt: 1, ml: 1 }}>
                         <CloseIcon sx={{ color: COLORS.oatmeal }} />
                     </IconButton>
                     <Box sx={{ ...CENTER, px: 2, py: 4 }}>

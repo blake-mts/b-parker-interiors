@@ -19,7 +19,7 @@ export default function Contact() {
                 }}
             >
                 <Box sx={{ position: 'absolute', height: '100%', width: '100%' }}>
-                    <Image priority src={contactImage} alt="contact image" sizes="100vw" fill />
+                    <Image priority src={contactImage} alt="contact image" sizes="100vw" fill style={{ objectFit: 'cover' }} />
                 </Box>
                 <PageContainer
                     sx={{

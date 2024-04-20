@@ -14,8 +14,9 @@ export default function About() {
         <PageContainer>
             <Heading>{PAGES.about.title}</Heading>
             <Typography sx={{ mb: 2 }}>
-                B. Parker Interiors is a full-service residential build and design firm that assists clients in custom home
-                building, remodels, and decorating a functional beautiful space with furniture, fabrics, and accessories.
+                B. Parker Interiors is a comprehensive residential build and design firm dedicated to guiding clients through
+                the process of custom home construction, remodeling, and the creation of aesthetically pleasing, functional
+                living spaces adorned with carefully selected furniture, fabrics, and accessories.
             </Typography>
             <Typography>
                 <Link href={PAGES.contact.route} component={NextLink} sx={{ fontWeight: 500 }}>
@@ -30,7 +31,6 @@ export default function About() {
                     style={{
                         width: '100%',
                         height: 'auto',
-                        maxHeight: 500,
                         objectFit: 'cover',
                         objectPosition: 'bottom',
                     }}
@@ -39,13 +39,13 @@ export default function About() {
                 />
             </ImageContainer>
             <Typography variant="h2" sx={{ mb: 2 }}>
-                Services
+                HOME INTERIOR SERVICES
             </Typography>
             <Typography sx={{ mb: 4 }}>
-                At B. Parker Interiors we believe in meeting our clients wherever they might be in the creative process. The
-                benefits of being a build and design team are unlimted, but the real benefit comes from being able to provide
-                our clients with the service they need. Whether you need a builder, a designer, and/or a facilitator, we are
-                committed to finding what works best for you and your budget.
+                At B. Parker Interiors, we are committed to meeting you at every stage of the creative process. As a cohesive
+                build and design team, we offer a spectrum of services tailored to suit you. Our versatility enables us to serve
+                as builders, designers, facilitators, or any combination thereof, ensuring that you receive personalized
+                attention and solutions aligned with your vision and budget.
             </Typography>
             <Sections
                 data={[
@@ -53,9 +53,9 @@ export default function About() {
                         title: <>NEW CONSTRUCTION</>,
                         body: (
                             <>
-                                Starting from the ground up, we will assist you every step of the way. Full collaboration and
-                                effective communication between the architect, designer, and builder ensures an enjoyable
-                                experience for the duration of the build.
+                                From inception to completion, we provide comprehensive support throughout the new construction
+                                process. Our collaborative approach fosters seamless communication and coordination, resulting
+                                in a rewarding and stress-free experience.
                             </>
                         ),
                     },
@@ -63,9 +63,9 @@ export default function About() {
                         title: <>REMODELS</>,
                         body: (
                             <>
-                                We are flexible when it comes to your remodel, and we want you to save money where we can. Our
-                                service for remodel depends on where you might be in the process, what you are hoping to create,
-                                and the provided budget.
+                                We understand the importance of flexibility and cost-efficiency in remodeling projects. Our
+                                remodel services are adaptable to various stages of the renovation process, accommodating
+                                diverse project scopes, objectives, and budgetary considerations.
                             </>
                         ),
                     },
@@ -73,9 +73,9 @@ export default function About() {
                         title: <>FURNITURE AND ACCESSORIES</>,
                         body: (
                             <>
-                                Completely custom-designed furniture to meet the needs of your family and compliment your
-                                beautiful home.Our exclusive designer lines allow us to curate a one-of-a-kind look at a
-                                designer discount rate.
+                                Our offerings include bespoke furniture tailored to meet the unique needs of each household,
+                                complementing the aesthetic of the home. Through our exclusive designer lines, we curate
+                                distinctive looks at discounted rates, ensuring a one-of-a-kind ambiance.
                             </>
                         ),
                     },
@@ -96,29 +96,15 @@ export default function About() {
                     }}
                 />
             </ImageContainer>
-            <Sections
-                data={[
-                    {
-                        title: <>HOW IT STARTED</>,
-                        body: (
-                            <>
-                                We both found ourselves in completely different careers when we decided to be honest with each
-                                other about our passion for bringing homes to life!
-                            </>
-                        ),
-                    },
-                    {
-                        title: <>HOW IT&apos;S GOING</>,
-                        body: (
-                            <>
-                                We feel so lucky to be doing what we love! With each project we embrace the challenge every home
-                                brings with creativity and experience
-                            </>
-                        ),
-                    },
-                ]}
-            />
-            <Typography>We would love to work with you!</Typography>
+            <Typography>
+                Our journey began when we both realized our shared passion for transforming houses into homes, despite pursuing
+                disparate careers.
+            </Typography>
+            <Typography sx={{ my: 3 }}>
+                We consider ourselves fortunate to engage in work we love. With each project, we approach the inherent
+                challenges with creativity and expertise, striving to exceed expectations and breathe life into every space.
+            </Typography>
+            <Typography>We look forward to the opportunity to collaborate with you!</Typography>
         </PageContainer>
     );
 }
