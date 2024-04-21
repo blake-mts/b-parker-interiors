@@ -5,6 +5,8 @@ import { Fields } from './ContactForm.validations';
 
 export const SUCCESS_RESPONSE_TYPE = 'SUCCESS';
 
+export type ResponseType = typeof SUCCESS_RESPONSE_TYPE;
+
 export enum Field {
     NAME = 'NAME',
     EMAIL = 'EMAIL',
@@ -25,5 +27,3 @@ export interface ContactFormSubmission {
 export enum ErrorResponseType {
     INVALID_RECAPTCHA_TOKEN = 'INVALID_RECAPTCHA_TOKEN',
 }
-
-export type ResponseType = typeof SUCCESS_RESPONSE_TYPE | ErrorResponseType;

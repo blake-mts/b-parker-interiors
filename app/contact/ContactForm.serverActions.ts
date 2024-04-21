@@ -1,8 +1,8 @@
 'use server';
 
-import { ContactFormSubmission, ErrorResponseType, SUCCESS_RESPONSE_TYPE } from './ContactForm.types';
-import { ResponseType } from './ContactForm.types';
+import { ContactFormSubmission, SUCCESS_RESPONSE_TYPE } from './ContactForm.types';
 import { Fields } from './ContactForm.validations';
+import { ResponseType } from './ContactForm.types';
 
 const apiKey = process.env.MAILGUN_API_KEY;
 const domain = process.env.MAILGUN_DOMAIN;
@@ -22,16 +22,10 @@ export async function submitContactForm(formSubmission: ContactFormSubmission): 
         body: recaptchaFormData,
     });
 
-    const verifyTokenResponseJSON: { success: boolean } = await verifyTokenResponse.json();
+    const parsedTokenResponse: { success: boolean } = await verifyTokenResponse.json();
 
-    if (!verifyTokenResponseJSON.success) {
-        console.log({
-            response: verifyTokenResponseJSON,
-            responseType: ErrorResponseType.INVALID_RECAPTCHA_TOKEN,
-        });
-        return {
-            responseType: ErrorResponseType.INVALID_RECAPTCHA_TOKEN,
-        };
+    if (!parsedTokenResponse.success) {
+        throw Error(JSON.stringify(parsedTokenResponse));
     }
 
     Fields.parse(fields);
@@ -40,7 +34,7 @@ export async function submitContactForm(formSubmission: ContactFormSubmission): 
 
     const formValues = {
         from: `Website Contact Form <mailgun@${domain}>`,
-        to: 'blake@masonts.com',
+        to: 'bailey@bparkerinteriors.com',
         subject: 'Contact Form Submission',
         html: `
                 Name: ${fields.NAME}

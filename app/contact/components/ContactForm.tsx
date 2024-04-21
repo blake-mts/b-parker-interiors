@@ -8,7 +8,7 @@ import { FormEventHandler, useState } from 'react';
 import { ContactForm } from '../ContactForm.class';
 import { useContactForm } from '../ContactForm.context';
 import { submitContactForm } from '../ContactForm.serverActions';
-import { ErrorResponseType, Field } from '../ContactForm.types';
+import { Field } from '../ContactForm.types';
 import ErrorDialog from './ContactFormErrorDialog';
 import FormField from './ContactFormField';
 import HelpText from './ContactFormHelpText';
@@ -35,16 +35,11 @@ export default function EmailForm() {
 
             setSubmitting(true);
 
-            const sumbissionResponse = await submitContactForm(ContactForm.buildFields(state, token));
-
-            if (sumbissionResponse.responseType === ErrorResponseType.INVALID_RECAPTCHA_TOKEN) {
-                throw Error(ErrorResponseType.INVALID_RECAPTCHA_TOKEN);
-            }
+            await submitContactForm(ContactForm.buildFields(state, token));
 
             setSuccessDialog(true);
             resetForm();
         } catch (error) {
-            console.log(error);
             setErrorDialog(true);
             setSubmitting(false);
         }
