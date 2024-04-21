@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'B. Parker Interiors',
         description: 'Residential Build and Design Firm',
-        url: 'https://b-parker-interiors-green.vercel.app/',
+        url: 'https://www.bparkerinteriors.com/',
     },
-    metadataBase: new URL('https://b-parker-interiors-green.vercel.app/'),
+    metadataBase: new URL('https://www.bparkerinteriors.com/'),
 };
