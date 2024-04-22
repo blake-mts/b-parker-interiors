@@ -53,6 +53,7 @@ export const metadata: Metadata = {
         title: 'B. Parker Interiors',
         description: 'Residential Build and Design Firm',
         url: 'https://www.bparkerinteriors.com/',
+        images: './opengraph-image.jpg',
     },
     metadataBase: new URL('https://www.bparkerinteriors.com/'),
 };
