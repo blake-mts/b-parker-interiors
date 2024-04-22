@@ -6,8 +6,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Metadata } from 'next';
 import Navigation from './components/Navigation';
 import Head from 'next/head';
-import image from '@/public/opengraph-image.jpg';
-import icon from '@/public/favicon.ico';
 
 import './globals.css';
 
@@ -19,6 +17,7 @@ const meta = {
         width: '1280',
         type: 'image/jpeg',
         description: 'summary_large_image',
+        path: '/opengraph-image.jpg',
     },
     url: 'https://www.bparkerinteriors.com',
 };
@@ -39,15 +38,15 @@ export default function RootLayout({
                 <meta property="og:image:type" content={meta.image.type} />
                 <meta property="og:image:width" content={meta.image.width} />
                 <meta property="og:image:height" content={meta.image.height} />
-                <meta property="og:image" content={image.src} />
+                <meta property="og:image" content={meta.image.path} />
                 <meta name="twitter:image:type" content={meta.image.type} />
                 <meta name="twitter:image:width" content={meta.image.width} />
                 <meta name="twitter:image:height" content={meta.image.height} />
-                <meta name="twitter:image" content={image.src} />
+                <meta name="twitter:image" content={meta.image.path} />
                 <meta name="twitter:card" content={meta.image.description} />
                 <meta name="twitter:title" content={meta.title} />
                 <meta name="twitter:description" content={meta.description} />
-                <link rel="icon" href={icon.src} type="image/x-icon" sizes="16x16" />
+                <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16" />
             </Head>
             <body>
                 <AppRouterCacheProvider>
