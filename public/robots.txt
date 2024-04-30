@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://bparkerinteriors.com
-
-# Sitemaps
-Sitemap: https://bparkerinteriors.com/sitemap.xml

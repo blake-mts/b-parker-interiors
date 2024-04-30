@@ -22,3 +22,9 @@ export const PAGES: {
 } as const;
 
 export const PAGES_ORDERED: Page[] = Object.values(PAGES);
+console.log(
+    PAGES_ORDERED.map((page) => ({
+        url: new URL(page.route, BASE_URL).href,
+        lastModified: new Date(),
+    }))
+);
